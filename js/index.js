@@ -58,7 +58,7 @@ window.addEventListener("load", e => {
     this.children[0].style.filter = "";
   };
 
-  function random(max = 255, min = 0) {
+  function random(max = 255, min = 0.5) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
@@ -78,10 +78,13 @@ window.addEventListener("load", e => {
 
   //select
   //select event only works for textarea and input
-
-  window.ondblclick = function(e) {
+  const [content] = document.getElementsByClassName("content-destination");
+  content.ondblclick = function(e) {
     e.target.style.backgroundColor = `rgba(${random()}, ${random()}, ${random()}, ${random(
       1
     )})`;
+  };
+  content.children[0].ondblclick = function(e) {
+    e.stopPropagation();
   };
 });
